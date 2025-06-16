@@ -149,45 +149,97 @@ function redirectCourse() {
     }
 
     // popup form
- $(document).ready(function() {
+//  $(document).ready(function() {
+//             $('#joinForm').on('submit', function(e) {
+//                 e.preventDefault();
+
+//                 $.ajax({
+//                     url: 'join_insert.php',
+//                     type: 'POST',
+//                     data: $(this).serialize(),
+//                     success: function(response) {
+//                         alert(response); // Show success or server message
+//                         $('#joinForm')[0].reset(); // Reset form
+//                         const joinUsModal = bootstrap.Modal.getInstance(document.getElementById(
+//                             'joinUsModal'));
+//                         joinUsModal.hide(); // Bootstrap 5 way to hide modal
+//                     },
+//                     error: function(xhr, status, error) {
+//                         console.log(xhr.responseText);
+//                         alert('Something went wrong: ' + error);
+//                     }
+//                 });
+//             });
+//         });
+
+
+     $(document).ready(function() {
             $('#joinForm').on('submit', function(e) {
                 e.preventDefault();
 
+                // Clear all previous error messages
+                $('.pe-error-message').text('');
+
+                let name = $('input[name="name"]').val().trim();
+                let email = $('input[name="email"]').val().trim();
+                let phone = $('input[name="phone"]').val().trim();
+                let message = $('textarea[name="message"]').val().trim();
+
+                let isValid = true;
+
+                if (name === "") {
+                    $('.error-name').text("Please enter your name.");
+                    isValid = false;
+                }
+                if (email === "") {
+                    $('.error-email').text("Please enter your email.");
+                    isValid = false;
+                } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+                    $('.error-email').text("Invalid email format.");
+                    isValid = false;
+                }
+                if (phone === "") {
+                    $('.error-phone').text("Please enter your phone.");
+                    isValid = false;
+                } else if (!/^\d{10}$/.test(phone)) {
+                    $('.error-phone').text("Phone must be 10 digits.");
+                    isValid = false;
+                }
+                if (message === "") {
+                    $('.error-message').text("Please enter a message.");
+                    isValid = false;
+                }
+
+                if (!isValid) return;
+
+                // AJAX request
                 $.ajax({
-                    url: 'join_insert.php',
-                    type: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        alert(response); // Show success or server message
-                        $('#joinForm')[0].reset(); // Reset form
-                        const joinUsModal = bootstrap.Modal.getInstance(document.getElementById(
-                            'joinUsModal'));
-                        joinUsModal.hide(); // Bootstrap 5 way to hide modal
+                    url: "submit_form.php",
+                    method: "POST",
+                    data: {
+                        name,
+                        email,
+                        phone,
+                        message
                     },
-                    error: function(xhr, status, error) {
-                        console.log(xhr.responseText);
-                        alert('Something went wrong: ' + error);
+                    success: function(response) {
+                        if (response.trim() === "success") {
+                            alert("Thank you for joining!");
+                            $('#joinForm')[0].reset();
+                            $('#joinUsModal').modal('hide');
+
+                            // Redirect after short delay
+                            setTimeout(() => {
+                                window.location.href = "index.html";
+                            }, 500);
+                        } else {
+                            alert(response);
+                        }
+                    },
+                    error: function() {
+                        alert("Something went wrong. Try again.");
                     }
                 });
             });
         });
-
-
-    //  $("#joinForm").on("submit", function(e) {
-    //     e.preventDefault();
-
-    //     const formData = $(this).serialize();
-
-    //     $.ajax({
-    //         url: "join_insert.php", // Change this to your actual PHP file
-    //         type: "POST",
-    //         data: formData,
-    //         success: function(response) {
-    //             $("#responseMsg").html(response);
-    //             $("#joinForm")[0].reset();
-    //         },
-    //         error: function() {
-    //             $("#responseMsg").html("Error occurred. Please try again.");
-    //         }
-    //     });
-    // });
+        

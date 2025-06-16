@@ -9,7 +9,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/clogo.jpg" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -25,7 +25,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/stylesss.css" rel="stylesheet">
 </head>
 
 <body>
@@ -58,7 +58,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="about.html" class="nav-link position-relative px-3">
+                            <a href="about.html" class="nav-link active position-relative px-3">
                                 <span class="nav-link-text">About</span>
                                 <span class="nav-link-underline"></span>
                             </a>
@@ -437,7 +437,72 @@
         </div>
     </footer>
     <!-- Footer End -->
+    <!-- Modal Form -->
+    <div class="modal fade" id="joinUsModal" tabindex="-1" aria-labelledby="joinUsLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="joinForm" method="post" novalidate>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="joinUsLabel">
+                            <i class="fas fa-user-plus me-2"></i>Join Us
+                        </h4>
+                        <button type="button" class="btn text-white fs-5" data-bs-dismiss="modal"
+                            aria-label="Close" style="background: none; border: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
 
+                    </div>
+                    <div class="modal-body">
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input type="text" name="name" class="form-control"
+                                    placeholder="Enter your full name" required>
+                            </div>
+                            <div class="pe-error-message error-name text-danger small"></div>
+                        </div>
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label">Email Address <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input type="email" name="email" class="form-control"
+                                    placeholder="name@example.com" required>
+                            </div>
+                            <div class="pe-error-message error-email text-danger small"></div>
+                        </div>
+                        <!-- Phone -->
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                <input type="text" name="phone" class="form-control"
+                                    placeholder="10-digit phone number" required>
+                            </div>
+                            <div class="pe-error-message error-phone text-danger small"></div>
+                        </div>
+                        <!-- Message -->
+                        <div class="mb-3">
+                            <label class="form-label">Your Message <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-comment-dots"></i></span>
+                                <textarea name="message" class="form-control" rows="4" placeholder="Type your message here..." required></textarea>
+                            </div>
+                            <div class="pe-error-message error-message text-danger small"></div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-join">
+                            <i class="fas fa-paper-plane me-2"></i>Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i
@@ -458,7 +523,7 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="js/mainscript.js"></script>
 </body>
 
 </html>

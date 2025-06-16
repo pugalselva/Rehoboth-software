@@ -20,7 +20,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssss", $name, $email, $phone, $message);
 
 if ($stmt->execute()) {
-    echo "Thank you for joining!";
+    echo "success";
 } else {
     echo "Error: " . $stmt->error;
 }
